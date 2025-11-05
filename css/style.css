@@ -1,0 +1,385 @@
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-image: url('images/wallpaper1.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ensure main grows so footer stays at bottom */
+main { flex: 1 0 auto; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+  margin-top: 40px;
+  font-size: x-large;
+  margin-bottom: 40px;
+}
+
+nav,
+.footer {
+  background-color: #80c9e5;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a,
+.footer a {
+  color: #000080;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+nav a:hover,
+.footer a:hover {
+  color: white;
+  /* highlight on hover */
+}
+
+.image-box {
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px black;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.image-box img {
+  width: 500px;
+  height: 600px;
+  border-radius: 15px;
+}
+
+.image-box:hover img {
+  transform: scale(1.1);
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 18px;
+  opacity: 0;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-box:hover .caption {
+  opacity: 1;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.gallery.welcome-gallery .image-box img {
+  width: 300px;
+  height: 400px;
+}
+
+form {
+  background: #f0d9d9;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+label,
+input,
+textarea {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+input,
+textarea {
+  padding: 10px;
+}
+
+input[type="submit"] {
+  background: #6ea5e0;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background: #0056b3;
+}
+
+.collapsible {
+  position: relative;
+  margin: 8px 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #171515;
+  transition: all 3s;
+}
+
+.title {
+  background-color: #79abe0;
+  color: black;
+  padding: 15px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 20px;
+  width: 100%;
+  border: none;
+  display: block;
+}
+
+/*I got the idea from https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details*/
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary.title {
+  list-style: none;
+}
+
+.title:hover {
+  background-color: #e4a4a4;
+}
+
+.title:focus {
+  outline: none;
+}
+
+.content {
+  max-height: 0;
+  opacity: 0;
+  background-color: #b0d2df;
+  padding: 0 15px;
+  font-size: 18px;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+  transition: max-height 1s ease, opacity 1s ease, padding 1s ease;
+}
+
+details[open] .content {
+  opacity: 1;
+  max-height: 800px;
+  padding: 15px;
+}
+
+details[open] .title {
+  background-color: #e4a4a4;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.welcome:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* ==== Fade variant (centered text) — affects only .image-box.img-fade ==== */
+.image-box.img-fade {
+  position: relative;
+}
+
+.image-box.img-fade img {
+  transition: opacity .5s ease;
+}
+
+.image-box.img-fade:hover img {
+  opacity: 0;
+  transform: none;
+  /* prevent zoom on this variant */
+}
+
+.image-box.img-fade .caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #e4a4a4;
+  opacity: 0;
+  transition: opacity .5s ease;
+  padding: 10px;
+}
+
+.image-box.img-fade:hover .caption {
+  opacity: 1;
+}
+
+/* ===== Uniform tiles — every card same shape; image crops (cover) */
+.image-box.aspect-cover {
+  width: clamp(220px, 28vw, 400px);
+  aspect-ratio: 4 / 5;
+  position: relative;
+}
+
+.image-box.aspect-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 15px;
+}
+
+/* overlay centering for the uniform tiles too */
+.image-box.aspect-cover .caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Social icons in footer */
+.footer .social {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+  align-items: center;
+}
+.footer .social a {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  transition: background .15s ease, transform .12s ease;
+  text-decoration: none;
+}
+.footer .social a svg {
+  width: 20px;
+  height: 20px;
+  fill: #000080;
+  transition: fill .15s ease, transform .12s ease;
+}
+.footer .social a:hover {
+  background: #000080;
+  transform: translateY(-2px);
+}
+.footer .social a:hover svg {
+  fill: #fff;
+}
+
+/* screen-reader only helper */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* footer layout: align nav and social on one row */
+.footer .footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: calc(100% - 2rem);
+  box-sizing: border-box;
+}
+
+/* make footer links a horizontal row */
+.footer .footer-nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ensure social stays on the right */
+.footer .social {
+  margin-top: 0;
+  justify-content: flex-end;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 640px) {
+  .footer .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer .footer-nav {
+    order: 2;
+    margin-top: 8px;
+  }
+  .footer .social {
+    order: 1;
+    margin-bottom: 8px;
+  }
+}
