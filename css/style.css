@@ -6,10 +6,9 @@ html, body {
   padding: 0;
   min-height: 100vh;
 }
-
 body {
   font-family: "Times New Roman", Times, serif;
-  background-image: url('css/images/wallpaper1.jpg');
+  background-image: url('/images/wallpaper1.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -18,7 +17,6 @@ body {
   flex-direction: column;
 }
 
-/* ensure main grows so footer stays at bottom */
 main { flex: 1 0 auto; }
 
 h1,
@@ -239,7 +237,7 @@ details[open] .title {
   text-align: center;
 }
 
-/* ==== Fade variant (centered text) — affects only .image-box.img-fade ==== */
+/* Fade variant — affects only .image-box.img-fade */
 .image-box.img-fade {
   position: relative;
 }
@@ -247,11 +245,10 @@ details[open] .title {
 .image-box.img-fade img {
   transition: opacity .5s ease;
 }
-
+ 
 .image-box.img-fade:hover img {
   opacity: 0;
   transform: none;
-  /* prevent zoom on this variant */
 }
 
 .image-box.img-fade .caption {
@@ -271,13 +268,13 @@ details[open] .title {
   opacity: 1;
 }
 
-/* ===== Uniform tiles — every card same shape; image crops (cover) */
 .image-box.aspect-cover {
   width: clamp(220px, 28vw, 400px);
   aspect-ratio: 4 / 5;
   position: relative;
 }
 
+/*every card same shape*/
 .image-box.aspect-cover img {
   width: 100%;
   height: 100%;
@@ -329,7 +326,7 @@ details[open] .title {
   fill: #fff;
 }
 
-/* screen-reader only helper */
+/* screen-reader helper */
 .sr-only {
   position: absolute !important;
   width: 1px;
@@ -342,7 +339,7 @@ details[open] .title {
   border: 0;
 }
 
-/* footer layout: align nav and social on one row */
+/* align nav and social on one row */
 .footer .footer-content {
   display: flex;
   align-items: center;
@@ -361,8 +358,7 @@ details[open] .title {
   align-items: center;
   justify-content: flex-start;
 }
-
-/* ensure social stays on the right */
+/*ensures icons stay on the right*/
 .footer .social {
   margin-top: 0;
   justify-content: flex-end;
