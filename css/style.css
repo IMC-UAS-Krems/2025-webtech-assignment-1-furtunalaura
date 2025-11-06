@@ -69,7 +69,7 @@ nav a:hover,
 }
 
 .image-box:hover img {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Scales the image by 10% on hover */
 }
 
 .caption {
@@ -147,7 +147,7 @@ input[type="submit"]:hover {
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid #171515;
-  transition: all 3s;
+  transition: all 3s; /*smoothly transitions all properties when the collapsible element is toggled */
 }
 
 .title {
@@ -166,7 +166,7 @@ input[type="submit"]:hover {
 
 /*I got the idea from https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details*/
 summary::-webkit-details-marker {
-  display: none;
+  display: none; /*removes the default list marker*/
 }
 
 summary.title {
